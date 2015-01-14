@@ -27,13 +27,9 @@ public class Order extends HttpServlet {
 			throws ServletException, IOException {
 		// super.doGet(req, resp);
 		resp.setContentType("text/html;charset=UTF-8;pageEncoding=UTF-8");
-		// PrintWriter out=resp.getWriter();
 		resp.setCharacterEncoding("UTF-8");
 		try {
 			OrderService orderService = new OrderServiceImpl();
-
-			// StudentService studentService =
-			// ServiceFactory.getStudentService();
 
 			List orderlist = orderService.getOrderList();
 
@@ -188,7 +184,6 @@ public class Order extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		super.doPost(req, resp);
 	}
 

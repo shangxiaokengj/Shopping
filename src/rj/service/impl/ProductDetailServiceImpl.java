@@ -12,22 +12,15 @@ import rj.service.ProductDetailService;
 public class ProductDetailServiceImpl implements ProductDetailService{
 
 	public Product getProduct(String productid){
-		
 		Product product = new Product();
-
         Connection conn = null;
-		
 		Statement stmt = null;
-		
 		ResultSet rs = null;
-		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/gwap","root","");
 			stmt = conn.createStatement();
-			
 			String sql = "select * from product where productid ='"+ productid +"'";
-			
 			rs = stmt.executeQuery(sql);		
 			
 			if(rs.next()){
@@ -59,7 +52,6 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 		}
 		
 		return product;
-		
 		
 	}
 

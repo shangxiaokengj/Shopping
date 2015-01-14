@@ -60,7 +60,6 @@ public class OrderServiceImpl implements OrderService {
 	public Orders getOrder(int orderid) {
 
 		Connection conn = null;
-
 		Statement stmt = null;
 		ResultSet rs = null;
 		Orders orders = new Orders();
@@ -72,11 +71,7 @@ public class OrderServiceImpl implements OrderService {
 			stmt = conn.createStatement();
 			String sql = "select * from orders where orderid =" + orderid
 					+ "";
-			System.out.println(sql);
-			
 			rs = stmt.executeQuery(sql);
-			System.out.println(sql);
-
 			if(rs.next()){
 				System.out.println(rs.getInt("orderid"));
 				
@@ -104,11 +99,6 @@ public class OrderServiceImpl implements OrderService {
 				throw new RuntimeException("error when querying orders ", e);
 			}
 		}
-		
-		System.out.println("nulmml");
-		
-	/*	System.out.println(order.getCost());
-		System.out.println(order.getName());*/
 		
 		return orders;
 	}

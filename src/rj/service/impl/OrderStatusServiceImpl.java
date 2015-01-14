@@ -17,14 +17,10 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 
 	@Override
 	public OrderStatus getOrderStatus(int statusid) {
-
 		Connection conn = null;
-
 		Statement stmt = null;
-
 		ResultSet rs = null;
 		OrderStatus orderstatus = new OrderStatus();
-
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
@@ -32,21 +28,14 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 					"jdbc:mysql://localhost:3306/gwap", "root", "");
 
 			stmt = conn.createStatement();
-
 			rs = stmt
 					.executeQuery("select name from orderstatus where statusid="
 							+ statusid+"");
 			
-//System.out.println("select paystyle from payway where paywayid="
-	//						+ statusid+"");
 			if(rs.next()){
 
 				orderstatus.setName(rs.getString("name"));
 				orderstatus.setStatusid(statusid);
-				//statusid.setPaystyle(rs.getString("paystyle"));
-				//statusid.setPaywayid(paywayid);
-				
-				//System.out.println("payway id = "+rs.getInt("paywayid"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

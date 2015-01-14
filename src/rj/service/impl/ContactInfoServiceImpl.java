@@ -35,19 +35,10 @@ public class ContactInfoServiceImpl implements ContactInfoService {
 			stmt = conn.createStatement();
 			String sql = "select * from contactinfo where userid ='" + userid
 					+ "' ";
-			System.out.println(sql);
-
 			rs = stmt.executeQuery(sql);
-			System.out.println(sql);
-
 			if (rs.next()) {
 				
-				System.out.println(rs.getString("cellphone"));
-				
 				contactinfo.setCellphone(rs.getString("cellphone"));
-				
-				System.out.println(contactinfo.getCellphone());
-				
 				contactinfo.setCity(rs.getString("city"));
 				contactinfo.setContactid(rs.getInt("contactid"));
 				contactinfo.setCountry(rs.getString("country"));

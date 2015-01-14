@@ -18,7 +18,6 @@ public class OrderLineServiceImpl implements OrderLineService {
 	public List getOrderLineList(String orderid) {
 		List orderLinelist = new ArrayList();
 		Connection conn = null;
-
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
@@ -36,8 +35,6 @@ public class OrderLineServiceImpl implements OrderLineService {
 				orderline.setProductid(rs.getInt("productid"));
 				orderline.setAmount(rs.getDouble("amount"));
 				orderLinelist.add(orderline);
-				
-				System.out.println(orderline.getAmount()+"amount");
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

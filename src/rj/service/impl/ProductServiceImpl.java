@@ -14,15 +14,10 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List getProductList() {
-
 		List productList = new ArrayList();
-
 		Connection conn = null;
-
 		Statement stmt = null;
-
 		ResultSet rs = null;
-
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
@@ -30,12 +25,10 @@ public class ProductServiceImpl implements ProductService {
 					"jdbc:mysql://localhost:3306/gwap", "root", "");
 
 			stmt = conn.createStatement();
-
 			rs = stmt.executeQuery(" select * from product");
 
 			while (rs.next()) {
 				Product product = new Product();
-
 				product.setProductid(rs.getString("productid"));
 				product.setName(rs.getString("name"));
 				product.setDescription(rs.getString("description"));
@@ -45,12 +38,10 @@ public class ProductServiceImpl implements ProductService {
 				product.setPublish(rs.getString("publish"));
 				product.setPages(rs.getInt("pages"));
 				product.setImages("images");
-
 				productList.add(product);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-
 			throw new RuntimeException("error when querying Product ", e);
 		} finally {
 			try {
@@ -59,7 +50,6 @@ public class ProductServiceImpl implements ProductService {
 				conn.close();
 			} catch (Exception e) {
 				e.printStackTrace();
-
 				throw new RuntimeException("error when querying", e);
 			}
 		}

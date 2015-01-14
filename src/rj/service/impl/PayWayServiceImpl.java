@@ -15,12 +15,9 @@ public class PayWayServiceImpl implements PayWayService {
 	public PayWay getPayWay(int paywayid) {
 
 		Connection conn = null;
-
 		Statement stmt = null;
-
 		ResultSet rs = null;
 		PayWay payway = new PayWay();
-
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
@@ -31,16 +28,11 @@ public class PayWayServiceImpl implements PayWayService {
 
 			rs = stmt
 					.executeQuery("select paystyle from payway where paywayid="
-							+ paywayid+"");
-			
-System.out.println("select paystyle from payway where paywayid="
-							+ paywayid+"");
-			if(rs.next()){
+							+ paywayid + "");
 
+			if (rs.next()) {
 				payway.setPaystyle(rs.getString("paystyle"));
 				payway.setPaywayid(paywayid);
-				
-				//System.out.println("payway id = "+rs.getInt("paywayid"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
