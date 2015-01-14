@@ -1,0 +1,8 @@
+package rj.controller;
+
+import javax.servlet.http.HttpServlet;
+
+public class ControllerServlet extends HttpServlet {
+
+	
+}

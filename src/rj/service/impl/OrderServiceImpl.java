@@ -73,8 +73,6 @@ public class OrderServiceImpl implements OrderService {
 					+ "";
 			rs = stmt.executeQuery(sql);
 			if(rs.next()){
-				System.out.println(rs.getInt("orderid"));
-				
 				orders.setOrderid(rs.getInt("orderid"));
 				orders.setName(rs.getString("name"));
 				orders.setCost(rs.getDouble("cost"));
