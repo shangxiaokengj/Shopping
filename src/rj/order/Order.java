@@ -138,7 +138,7 @@ public class Order extends HttpServlet {
 			Orders order = it.next();
 			
 			PayWayService paywayservice = new PayWayServiceImpl();
-			PayWay payway = paywayservice.getPayWay(order.getOrderid());
+			PayWay payway = paywayservice.getPayWay(order.getPaywayid());
 			OrderStatusService oderstatusservice  = new OrderStatusServiceImpl();
 			OrderStatus oderstatus =oderstatusservice.getOrderStatus(order.getStatusid());
 			
