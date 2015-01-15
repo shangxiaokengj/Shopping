@@ -1,4 +1,4 @@
-package rj.order;
+package rj.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,7 +28,7 @@ import rj.service.impl.PayWayServiceImpl;
 import rj.service.impl.ProductDetailServiceImpl;
 import rj.service.impl.UserServiceImpl;
 
-public class OrderDetail extends HttpServlet {
+public class OrderDetailServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -101,7 +101,7 @@ public class OrderDetail extends HttpServlet {
 		out.println("			<tr>");
 		out.println("				<td height=\"25\" valign=\"middle\">");
 		out.println("					<img src=\"images/Forum_nav.gif\" align=\"absmiddle\">");
-		out.println("					<a href=\"ProductList\">达内电子商务门户</a> → <a href=\"Order\">定单列表</a>  → <b>定单明细</b>");
+		out.println("					<a href=\"ProductList.PHP\">达内电子商务门户</a> → <a href=\"Order\">定单列表</a>  → <b>定单明细</b>");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("		</table>");

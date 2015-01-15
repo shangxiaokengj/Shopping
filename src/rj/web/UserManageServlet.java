@@ -1,4 +1,4 @@
-package rj.user;
+package rj.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import rj.pojo.User;
 
-public class UserManage extends HttpServlet {
+public class UserManageServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -77,7 +77,7 @@ public class UserManage extends HttpServlet {
 		out.println("</html>");
 		out.println("<!-- Header End -->");
 		out.println("<!-- Body Start -->");
-		out.println("<form method=\"post\" name=\"reg\"  action=\"/ecport/user/modify.do\">");
+		out.println("<form method=\"post\" name=\"reg\"  action=\"/ecport/user/modify.do\">");//?????????????
 		out.println("	<input type=\"hidden\" name=\"userid\" value=\"admin\"/>");
 		out.println("");
 		out.println("	<input type=\"hidden\" name=\"contactid\" value=\"1\"/>");
@@ -86,7 +86,7 @@ public class UserManage extends HttpServlet {
 		out.println("			<tr>");
 		out.println("				<td height=\"25\" valign=\"middle\">");
 		out.println("					<img src=\"images/Forum_nav.gif\" align=\"absmiddle\">");
-		out.println("					<a href=\"ProductList\">达内电子商务门户</a> →用户列表");
+		out.println("					<a href=\"ProductList.PHP\">达内电子商务门户</a> →用户列表");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("		</table>");

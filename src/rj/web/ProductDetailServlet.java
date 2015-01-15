@@ -1,4 +1,4 @@
-package rj.product;
+package rj.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,7 +15,7 @@ import rj.service.ProductDetailService;
 import rj.service.impl.CategoryServerImpl;
 import rj.service.impl.ProductDetailServiceImpl;
 
-public class ProductDetail extends HttpServlet {
+public class ProductDetailServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -94,7 +94,7 @@ System.out.println(req.getQueryString());
 		out.println("			<tr>");
 		out.println("				<td height=\"25\" valign=\"middle\">");
 		out.println("					<img src=\"images/Forum_nav.gif\" align=\"absmiddle\">");
-		out.println("					<a href=\"ProductList\">达内电子商务门户</a> → 产品明细");
+		out.println("					<a href=\"ProductList.PHP\">达内电子商务门户</a> → 产品明细");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("		</table>");

@@ -1,4 +1,4 @@
-package rj.user;
+package rj.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,7 +16,7 @@ import rj.service.UserService;
 import rj.service.impl.ContactInfoServiceImpl;
 import rj.service.impl.UserServiceImpl;
 
-public class UserModify extends HttpServlet {
+public class UserModifyServlet extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -98,7 +98,7 @@ public class UserModify extends HttpServlet {
 		out.println("</html>");
 		out.println("<!-- Header End -->");
 		out.println("<!-- Body Start -->");
-		out.println("<form method=\"post\" name=\"reg\"  action=\"/ecport/user/modify.do\">");
+		out.println("<form method=\"post\" name=\"reg\"  action=\"/ecport/user/modify.do\">");//???????????
 		out.println("	<input type=\"hidden\" name=\"userid\" value=\"admin\"/>");
 		out.println("");
 		out.println("	<input type=\"hidden\" name=\"contactid\" value=\"1\"/>");
@@ -107,7 +107,7 @@ public class UserModify extends HttpServlet {
 		out.println("			<tr>");
 		out.println("				<td height=\"25\" valign=\"middle\">");
 		out.println("					<img src=\"images/Forum_nav.gif\" align=\"absmiddle\">");
-		out.println("					<a href=\"ProductList\">达内电子商务门户</a> →用户信息修改");
+		out.println("					<a href=\"ProductList.PHP\">达内电子商务门户</a> →用户信息修改");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("		</table>");

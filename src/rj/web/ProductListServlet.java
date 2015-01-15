@@ -1,4 +1,4 @@
-package rj.product;
+package rj.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,7 +14,7 @@ import rj.pojo.Product;
 import rj.service.ProductService;
 import rj.service.impl.ProductServiceImpl;
 
-public class ProductList extends HttpServlet {
+public class ProductListServlet extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -78,7 +78,7 @@ public class ProductList extends HttpServlet {
 		out.println("			<tr>");
 		out.println("				<td height=\"25\" valign=\"middle\">");
 		out.println("					<img src=\"images/Forum_nav.gif\" align=\"absmiddle\">");
-		out.println("					<a href=\"ProductList\">达内电子商务门户</a> →<img border=\"0\" src=\"images/dog.gif\" width=\"19\" height=\"18\">欢迎<font color=\"red\">admin</font>光临！");
+		out.println("					<a href=\"ProductList.PHP\">达内电子商务门户</a> →<img border=\"0\" src=\"images/dog.gif\" width=\"19\" height=\"18\">欢迎<font color=\"red\">admin</font>光临！");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("		</table>");

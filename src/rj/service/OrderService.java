@@ -2,8 +2,8 @@ package rj.service;
 
 import java.util.List;
 
-import rj.order.Order;
 import rj.pojo.Orders;
+import rj.web.OrderServlet;
 
 
 public interface OrderService {

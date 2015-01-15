@@ -1,4 +1,4 @@
-package rj.user;
+package rj.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Login extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -72,7 +72,7 @@ public class Login extends HttpServlet {
 		out.println("			<tr>");
 		out.println("				<td height=\"25\" valign=\"middle\">");
 		out.println("					<img src=\"images/Forum_nav.gif\" align=\"absmiddle\">");
-		out.println("					<a href=\"ProductList\">达内电子商务门户</a> 用户登陆");
+		out.println("					<a href=\"ProductList.PHP\">达内电子商务门户</a> 用户登陆");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("		</table>");
@@ -93,7 +93,7 @@ public class Login extends HttpServlet {
 		out.println("				 </td>");
 		out.println("				<td class=tablebody1 valign=\"middle\" height=\"20\" width=\"80%\">");
 		out.println("					");
-		out.println("						<input type=\"text\">&nbsp;<a href=\"UserRegister\">注册新用户</a>");
+		out.println("						<input type=\"text\">&nbsp;<a href=\"UserRegister.PHP\">注册新用户</a>");
 		out.println("				");
 		out.println("				");
 		out.println("				");

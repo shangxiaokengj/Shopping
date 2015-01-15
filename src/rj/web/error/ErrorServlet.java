@@ -1,4 +1,4 @@
-package rj.error;
+package rj.web.error;
 
 import java.io.IOException;
 import java.io.PrintWriter;

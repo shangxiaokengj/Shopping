@@ -14,102 +14,102 @@
 	</welcome-file-list>
 
 	<servlet>
-		<servlet-name>Order</servlet-name>
-		<servlet-class>rj.order.Order</servlet-class>
+		<servlet-name>OrderServlet</servlet-name>
+		<servlet-class>rj.web.OrderServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>Order</servlet-name>
+		<servlet-name>OrderServlet</servlet-name>
 		<url-pattern>/Order</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>OrderDetail</servlet-name>
-		<servlet-class>rj.order.OrderDetail</servlet-class>
+		<servlet-name>OrderDetailServlet</servlet-name>
+		<servlet-class>rj.web.OrderDetailServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>OrderDetail</servlet-name>
+		<servlet-name>OrderDetailServlet</servlet-name>
 		<url-pattern>/OrderDetail</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>ProductDetail</servlet-name>
-		<servlet-class>rj.product.ProductDetail</servlet-class>
+		<servlet-name>ProductDetailServlet</servlet-name>
+		<servlet-class>rj.web.ProductDetailServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>ProductDetail</servlet-name>
+		<servlet-name>ProductDetailServlet</servlet-name>
 		<url-pattern>/ProductDetail</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>ProductList</servlet-name>
-		<servlet-class>rj.product.ProductList</servlet-class>
+		<servlet-name>ProductListServlet</servlet-name>
+		<servlet-class>rj.web.ProductListServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>ProductList</servlet-name>
+		<servlet-name>ProductListServlet</servlet-name>
 		<url-pattern>/ProductList</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>OrderConfirm</servlet-name>
-		<servlet-class>rj.ShoppingCart.OrderConfirm</servlet-class>
+		<servlet-name>OrderConfirmServlet</servlet-name>
+		<servlet-class>rj.web.OrderConfirmServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>OrderConfirm</servlet-name>
+		<servlet-name>OrderConfirmServlet</servlet-name>
 		<url-pattern>/OrderConfirm</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>ShoppingCart</servlet-name>
-		<servlet-class>rj.ShoppingCart.ShoppingCart</servlet-class>
+		<servlet-name>ShoppingCartServlet</servlet-name>
+		<servlet-class>rj.web.ShoppingCartServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>ShoppingCart</servlet-name>
+		<servlet-name>ShoppingCartServlet</servlet-name>
 		<url-pattern>/ShoppingCart</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>Login</servlet-name>
-		<servlet-class>rj.user.Login</servlet-class>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>rj.web.LoginServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>Login</servlet-name>
+		<servlet-name>LoginServlet</servlet-name>
 		<url-pattern>/Login</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>UserManage</servlet-name>
-		<servlet-class>rj.user.UserManage</servlet-class>
+		<servlet-name>UserManageServlet</servlet-name>
+		<servlet-class>rj.web.UserManageServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>UserManage</servlet-name>
+		<servlet-name>UserManageServlet</servlet-name>
 		<url-pattern>/UserManage</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>UserModify</servlet-name>
-		<servlet-class>rj.user.UserModify</servlet-class>
+		<servlet-name>UserModifyServlet</servlet-name>
+		<servlet-class>rj.web.UserModifyServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>UserModify</servlet-name>
+		<servlet-name>UserModifyServlet</servlet-name>
 		<url-pattern>/UserModify</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>UserRegister</servlet-name>
-		<servlet-class>rj.user.UserRegister</servlet-class>
+		<servlet-name>UserRegisterServlet</servlet-name>
+		<servlet-class>rj.web.UserRegisterServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>UserRegister</servlet-name>
+		<servlet-name>UserRegisterServlet</servlet-name>
 		<url-pattern>/UserRegister</url-pattern>
 	</servlet-mapping>
 	<servlet>
@@ -123,7 +123,7 @@
 
 	<servlet>
 		<servlet-name>ErrorServlet</servlet-name>
-		<servlet-class>rj.error.ErrorServlet</servlet-class>
+		<servlet-class>rj.web.error.ErrorServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>

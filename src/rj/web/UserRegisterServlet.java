@@ -1,4 +1,4 @@
-package rj.user;
+package rj.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class UserRegister extends HttpServlet {
+public class UserRegisterServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -76,7 +76,7 @@ public class UserRegister extends HttpServlet {
 		out.println("			<tr>");
 		out.println("				<td height=\"25\" valign=\"middle\">");
 		out.println("					<img src=\"images/Forum_nav.gif\" align=\"absmiddle\">");
-		out.println("					<a href=\"ProductList\">达内电子商务门户</a> → 用户注册");
+		out.println("					<a href=\"ProductList.PHP\">达内电子商务门户</a> → 用户注册");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("");

@@ -55,7 +55,15 @@ System.out.println(path);
 		} else if (path.contains("OrderDetail")) {
 			try {
 				String name = req.getParameter("id");
-				System.out.println(req.getParameter("id") + "didi");
+		System.out.println(req.getParameter("id") + "didi");
+		
+				if(name == null){
+					req.setAttribute("message", "please choose an order!");
+					getServletContext().getRequestDispatcher("/error").forward(req,
+							resp);
+					return;
+				}
+		
 				// get one order
 				OrderService orderService = new OrderServiceImpl();
 				Orders order = orderService.getOrder(Integer.parseInt(name));
@@ -94,6 +102,10 @@ System.out.println(path);
 
 			} catch (Exception e) {
 
+				req.setAttribute("message", e.getMessage());
+				getServletContext().getRequestDispatcher("/error").forward(req,
+						resp);
+				
 			}
 		} else if ("/ProductList".equals(path)) {
 			try {
@@ -112,6 +124,14 @@ System.out.println(path);
 
 			try {
 				String id = req.getParameter("id");
+				
+				if(id == null){
+					req.setAttribute("message", "please chose a product!");
+					getServletContext().getRequestDispatcher("/error").forward(req,
+							resp);
+					return;
+				}
+				
 				ProductDetailService productdetailService = new ProductDetailServiceImpl();
 				Product product = productdetailService.getProduct(id);
 				req.setAttribute("product", product);
