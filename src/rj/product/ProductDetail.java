@@ -16,56 +16,27 @@ import rj.service.impl.CategoryServerImpl;
 import rj.service.impl.ProductDetailServiceImpl;
 
 public class ProductDetail extends HttpServlet {
-	
-	
+
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+
 		
+		req.getParameter(null);
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		try{
-			ProductDetailService productdetailService = new ProductDetailServiceImpl();
-			CategoryService categoryservice = new CategoryServerImpl();
-			
-			String name=req.getParameter("id"); 
-			System.out.println(name);
-			Product product = productdetailService.getProduct(name);//所选书的书号
-			Category category = categoryservice.getCategory(product.getCategoryid());//所选书的类别名称
-			
-			toProductDetail(resp, product, category);
-		} catch(Exception e){
-			toError(resp,e.getMessage());
-		}
-		
-	}
-	
-	private void toError(HttpServletResponse resp, String message) throws IOException {
-		PrintWriter out = resp.getWriter();
-		
-		out.println("<html>");
-		out.println("<head>");
-		out.println("	<title>Error</title>");
-		out.println("</head>");
-		out.println("<body>");
-		out.println("	<h2 align=\"center\">Error</h2>");
-		out.println("	<hr>");
-		out.println("	System Error," + message + "!");
-		out.println("</body>");
-		out.println("</html>");
-		
-		out.close();
-	}
-	
-	private void toProductDetail(HttpServletResponse resp, Product product, Category category)
-			throws IOException {
-		
-		resp.setContentType("text/html;charset=UTF-8;pageEncoding=UTF-8");		
-		PrintWriter out=resp.getWriter();		
-		resp.setCharacterEncoding("UTF-8");	
+		//得到？之后的值
+System.out.println(req.getQueryString());
 
-		
+		Product product = (Product) req.getAttribute("product");// 所选书的书号
+		CategoryService categoryservice = new CategoryServerImpl();
+		Category category = categoryservice
+				.getCategory(product.getCategoryid());// 所选书的类别名称
+
+		resp.setCharacterEncoding("UTF-8");
+		PrintWriter out = resp.getWriter();
+
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<html>");
 		out.println("	<head>");
@@ -90,15 +61,15 @@ public class ProductDetail extends HttpServlet {
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ProductList\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"UserManage\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"UserManage.PHP\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ShoppingCart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"ShoppingCart.PHP\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"Order\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"Order.PHP\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ProductList\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
 		out.println("					</table>");
 		out.println("				</td>");
@@ -134,7 +105,7 @@ public class ProductDetail extends HttpServlet {
 		out.println("			<tr>");
 		out.println("				<td  colspan=\"2\" valign=\"middle\" align=\"center\" height=\"25\" background=\"images/bg2.gif\" width=\"100%\">");
 		out.println("					<font color=\"#ffffff\">");
-		out.println("						<b>"+ product.getName() +"</b>");
+		out.println("						<b>" + product.getName() + "</b>");
 		out.println("					</font>");
 		out.println("				</td>");
 		out.println("			</tr>");
@@ -144,7 +115,7 @@ public class ProductDetail extends HttpServlet {
 		out.println("				</td>");
 		out.println("				");
 		out.println("				<td class=tablebody1 valign=\"middle\" width=\"75%\">");
-		out.println("				"+ product.getAuthor() +"");
+		out.println("				" + product.getAuthor() + "");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -153,7 +124,7 @@ public class ProductDetail extends HttpServlet {
 		out.println("				</td>");
 		out.println("				");
 		out.println("				<td class=tablebody1 valign=\"middle\" width=\"75%\">");
-		out.println("				"+ product.getBasePrice() +"");
+		out.println("				" + product.getBasePrice() + "");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -162,7 +133,7 @@ public class ProductDetail extends HttpServlet {
 		out.println("				</td>");
 		out.println("				");
 		out.println("				<td class=tablebody1 valign=\"middle\" width=\"75%\">");
-		out.println("				"+ product.getPublish() +"");
+		out.println("				" + product.getPublish() + "");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -171,7 +142,7 @@ public class ProductDetail extends HttpServlet {
 		out.println("				</td>");
 		out.println("				");
 		out.println("				<td class=tablebody1 valign=\"middle\" width=\"75%\">");
-		out.println("				"+ product.getProductid() +"");
+		out.println("				" + product.getProductid() + "");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -180,7 +151,7 @@ public class ProductDetail extends HttpServlet {
 		out.println("				</td>");
 		out.println("				");
 		out.println("				<td class=tablebody1 valign=\"middle\" width=\"75%\">");
-		out.println("				"+ product.getPages() +"");
+		out.println("				" + product.getPages() + "");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -189,7 +160,7 @@ public class ProductDetail extends HttpServlet {
 		out.println("				</td>");
 		out.println("				");
 		out.println("				<td class=tablebody1 valign=\"middle\" width=\"75%\">");
-		out.println("				"+ category.getName() +"<br>");
+		out.println("				" + category.getName() + "<br>");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -198,7 +169,7 @@ public class ProductDetail extends HttpServlet {
 		out.println("				</td>");
 		out.println("				");
 		out.println("				<td class=tablebody1 valign=\"middle\" width=\"75%\">");
-		out.println("				"+ product.getDescription() +"");
+		out.println("				" + product.getDescription() + "");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -208,13 +179,13 @@ public class ProductDetail extends HttpServlet {
 		out.println("				");
 		out.println("				<td class=tablebody1 valign=\"middle\" width=\"75%\">");
 		out.println("				&nbsp");
-		out.println("				<img src=\""+ product.getImages() +"\">");
+		out.println("				<img src=\"" + product.getImages() + "\">");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			");
 		out.println("			<tr>");
 		out.println("			<td colspan=\"2\" class=tablebody2 valign=\"top\" align=\"center\" width=\"100%\" height=\"32\"> ");
-		out.println("				<a href=\"ShoppingCart\"><img border=\"0\" src=\"images/buycar.gif\" ></a> ");
+		out.println("				<a href=\"ShoppingCart.PHP\"><img border=\"0\" src=\"images/buycar.gif\" ></a> ");
 		out.println("    		</td>");
 		out.println("    		</tr>");
 		out.println("			");
@@ -247,9 +218,9 @@ public class ProductDetail extends HttpServlet {
 		out.println("<!-- Footer End -->");
 		out.println("	</body>");
 		out.println("</html>");
-		
-		
+
 		out.close();
-		
+
 	}
+
 }

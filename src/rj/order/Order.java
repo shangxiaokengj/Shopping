@@ -25,43 +25,21 @@ public class Order extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// super.doGet(req, resp);
+
+		this.doPost(req, resp);
+
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+
 		resp.setContentType("text/html;charset=UTF-8;pageEncoding=UTF-8");
 		resp.setCharacterEncoding("UTF-8");
-		try {
-			OrderService orderService = new OrderServiceImpl();
-
-			List orderlist = orderService.getOrderList();
-
-			toOrderList(resp, orderlist);
-		} catch (Exception e) {
-			toError(resp, e.getMessage());
-		}
-	}
-
-	private void toError(HttpServletResponse resp, String message)
-			throws IOException {
 		PrintWriter out = resp.getWriter();
 
-		out.println("<html>");
-		out.println("<head>");
-		out.println("	<title>Error</title>");
-		out.println("</head>");
-		out.println("<body>");
-		out.println("	<h2 align=\"center\">Error</h2>");
-		out.println("	<hr>");
-		out.println("	System Error," + message + "!");
-		out.println("</body>");
-		out.println("</html>");
+		List orderList = (List) req.getAttribute("orderList");
 
-		out.close();
-	}
-
-	private void toOrderList(HttpServletResponse resp, List orderlist)
-			throws IOException {
-		resp.setCharacterEncoding("UTF-8");
-		PrintWriter out=resp.getWriter();	
-		
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<html>");
 		out.println("	<head>");
@@ -86,15 +64,15 @@ public class Order extends HttpServlet {
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ProductList\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"UserManage\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"UserManage.PHP\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ShoppingCart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"ShoppingCart.PHP\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"Order\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"Order.PHP\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ProductList\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
 		out.println("					</table>");
 		out.println("				</td>");
@@ -130,28 +108,35 @@ public class Order extends HttpServlet {
 		out.println("				<td valign=middle align=center height=25 background=\"images/bg2.gif\"><font color=\"#ffffff\"><b>操作</b></font></td>");
 		out.println("			</tr>");
 
-		for (Iterator<Orders> it = orderlist.iterator(); it.hasNext();) {
+		for (Iterator<Orders> it = orderList.iterator(); it.hasNext();) {
 			Orders order = it.next();
-			
+
 			PayWayService paywayservice = new PayWayServiceImpl();
 			PayWay payway = paywayservice.getPayWay(order.getPaywayid());
-			OrderStatusService oderstatusservice  = new OrderStatusServiceImpl();
-			OrderStatus oderstatus =oderstatusservice.getOrderStatus(order.getStatusid());
-			
+			OrderStatusService oderstatusservice = new OrderStatusServiceImpl();
+			OrderStatus oderstatus = oderstatusservice.getOrderStatus(order
+					.getStatusid());
+
 			out.println("			<tr>");
 			out.println("				<td class=tablebody2 valign=middle align=center>"
 					+ order.getOrderid() + "</td>");
-			out.println("				<td class=tablebody1 valign=middle>&nbsp;&nbsp;<a href=\"OrderDetail?id="+order.getOrderid()+"\">"
-					+ order.getName() + "</a></td>");
+			
+			out.println("				<td class=tablebody1 id = \"" + order.getOrderid()
+					+ "\"valign=middle>&nbsp;&nbsp;<a href=\"OrderDetail.PHP?id="+order.getOrderid()+""
+					+ "\">" + order.getName() + "</a></td>");
+			
 			out.println("				<td class=tablebody2 valign=middle align=left>&nbsp;&nbsp;￥"
 					+ order.getCost() + "</td>");
+			
 			out.println("				<td class=tablebody1 valign=middle align=center>"
 					+ oderstatus.getName() + "</td>");
+			
 			out.println("				<td class=tablebody2 valign=middle align=left>&nbsp;&nbsp;"
 					+ payway.getPaystyle() + "</td>");
+			
 			out.println("			<td class=tablebody1 valign=middle align=center>");
-			out.println("					<input type=\"button\" value=\"删除\" onclick=\"javascript:window.location='Order';\">&nbsp;");
-			out.println("					<input type=\"button\" value=\"明细\" onclick=\"javascript:window.location='OrderDetail?id="+order.getOrderid()+"';\">");
+			out.println("					<input type=\"button\" value=\"删除\" onclick=\"javascript:window.location='Order.PHP';\">&nbsp;");
+			out.println("					<input type=\"button\" value=\"明细\" id = \""+order.getOrderid()+"\"onclick=\"javascript:window.location='OrderDetail.PHP?id="+order.getOrderid()+"';\">");
 			out.println("				</td>");
 		}
 
@@ -179,12 +164,6 @@ public class Order extends HttpServlet {
 		out.println("</html>");
 		out.close();
 
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		super.doPost(req, resp);
 	}
 
 }

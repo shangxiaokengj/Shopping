@@ -48,15 +48,15 @@ public class OrderConfirm extends HttpServlet{
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ProductList\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"UserManage\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"UserManage.PHP\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ShoppingCart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"ShoppingCart.PHP\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"Order\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"Order.PHP\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ProductList\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
 		out.println("					</table>");
 		out.println("				</td>");
@@ -94,7 +94,7 @@ public class OrderConfirm extends HttpServlet{
 		out.println("						<font color=\"#ffffff\" size=\"2pt\">");
 		out.println("							<b>用户信息</b>");
 		out.println("						</font>");
-		out.println("						<input type=\"button\" value=\"修改\" onclick=\"javascript:window.location='UserModify';\">");
+		out.println("						<input type=\"button\" value=\"修改\" onclick=\"javascript:window.location='UserModify.PHP';\">");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -157,7 +157,7 @@ public class OrderConfirm extends HttpServlet{
 		out.println("					<font color=\"#ffffff\" size=\"2pt\">");
 		out.println("							<b>商品购物清单</b>");
 		out.println("					</font>");
-		out.println("					<input type=\"button\" value=\"修改\" onclick=\"javascript:window.location='Order';\" >");
+		out.println("					<input type=\"button\" value=\"修改\" onclick=\"javascript:window.location='Order.PHP';\" >");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -186,7 +186,7 @@ public class OrderConfirm extends HttpServlet{
 		out.println("			<tr>");
 		out.println("				<td width=\"65%\" align=\"center\">");
 		out.println("					<b>请认真检查以上订单信息，确认无误后，点击&nbsp;→</b>");
-		out.println("					<a href=\"Order\"><img border=\"0\" src=\"images/submit.gif\"></a>");
+		out.println("					<a href=\"Order.PHP\"><img border=\"0\" src=\"images/submit.gif\"></a>");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("		</table>");

@@ -35,79 +35,13 @@ public class OrderDetail extends HttpServlet {
 			throws ServletException, IOException {
 
 		resp.setCharacterEncoding("UTF-8");
-		try {
-
-			String name = req.getParameter("id");
-			System.out.println(name);
-
-			OrderService orderService = new OrderServiceImpl();
-			// get one order
-			Orders order = orderService.getOrder(Integer.parseInt(name));
-			System.out.println(order.getName()+" getname");
-			
-
-			OrderLineService productdetailService = new OrderLineServiceImpl();
-			// get the orderlinelist according to the orderid
-			List orderLineList = productdetailService.getOrderLineList(name);
-			
-		/*for(int i=0; i< orderLineList.size();i++){
-			System.out.println(((OrderLine)orderLineList.get(i)).getAmount());
-		}*/
-
-			toOrderLineList(resp, orderLineList, order);
-		} catch (Exception e) {
-			toError(resp, e.getMessage());
-		}
-	}
-
-	private void toError(HttpServletResponse resp, String message)
-			throws IOException {
 		PrintWriter out = resp.getWriter();
-
-		out.println("<html>");
-		out.println("<head>");
-		out.println("	<title>Error</title>");
-		out.println("</head>");
-		out.println("<body>");
-		out.println("	<h2 align=\"center\">Error</h2>");
-		out.println("	<hr>");
-		out.println("	System Error," + message + "!");
-		out.println("</body>");
-		out.println("</html>");
-
-		out.close();
-	}
-
-	private void toOrderLineList(HttpServletResponse resp, List orderLineList,
-			Orders order) throws IOException {
-		resp.setCharacterEncoding("UTF-8");
-		PrintWriter out = resp.getWriter();
-
-		String userid = null;
-		int statusid = 0;
-		int paywayid = 0;
-
-		if (order != null) {
-			userid = order.getUserid();
-			statusid = order.getStatusid();
-			paywayid = order.getPaywayid();
-			//System.out.println(userid +" " + statusid + "paywayid =" + paywayid);
-		}
-
-		UserService userSerivce = new UserServiceImpl();
-		User user = userSerivce.getUser(userid);
 		
-		//System.out.println(user.getPassword() + user.getUserid()+"sdfsdf");
-
-		ContactInfoService contactinfoservice = new ContactInfoServiceImpl();
-		ContactInfo contactinfo = contactinfoservice.getContactInfo(userid);
-		
-		//System.out.println(contactinfo.getCellphone() + "contactinfo0000");
-
-		PayWayService paywayservice = new PayWayServiceImpl();
-		PayWay payway = paywayservice.getPayWay(paywayid);
-		
-		//System.out.println(payway.getPaystyle());
+		List orderLineList = (List)req.getAttribute("orderLineList");
+		PayWay payway = (PayWay)req.getAttribute("payway");
+		ContactInfo contactinfo = (ContactInfo)req.getAttribute("contactinfo");
+		User user = (User)req.getAttribute("user");
+		Orders order = (Orders)req.getAttribute("order");
 
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<html>");
@@ -135,16 +69,16 @@ public class OrderDetail extends HttpServlet {
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ProductList\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"UserManage\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"UserManage.PHP\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ShoppingCart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"ShoppingCart.PHP\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"Order\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"Order.PHP\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ProductList\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
 		out.println("					</table>");
 		out.println("				</td>");
@@ -327,7 +261,7 @@ public class OrderDetail extends HttpServlet {
 		out.println("			");
 		out.println("				</td>");
 		out.println("			<td class=tablebody1 valign=\"middle\" width=\"25%\"> ");
-		out.println("    			合计：<font color=\"red\"><b>￥"+totalCost+"</b><font>");
+		out.println("    			合计：<font color=\"red\"><b>￥"+order.getCost()+"</b><font>");
 		out.println("    			</td>");
 		out.println("			</tr>");
 		out.println("		</table>");
@@ -365,12 +299,14 @@ public class OrderDetail extends HttpServlet {
 		out.println("</html>");
 
 		out.close();
-
+		
 	}
+
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		super.doPost(req, resp);
+		
+		this.doGet(req, resp);
 	}
 }

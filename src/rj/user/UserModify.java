@@ -21,84 +21,28 @@ public class UserModify extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		try {
-			ContactInfoService contactInfoService = new ContactInfoServiceImpl();
 
-			String userid = req.getParameter("id");
-			System.out.println(userid);
-
-			ContactInfo contactinfo = contactInfoService.getContactInfo(userid);
-
-			toContactInfoList(resp, contactinfo);
-		} catch (Exception e) {
-			toError(resp, e.getMessage());
-		}
-
-	}
-
-	private void toError(HttpServletResponse resp, String message)
-			throws IOException {
 		resp.setCharacterEncoding("UTF-8");
 		PrintWriter out = resp.getWriter();
 
-		out.println("<html>");
-		out.println("<head>");
-		out.println("	<title>Error</title>");
-		out.println("</head>");
-		out.println("<body>");
-		out.println("	<h2 align=\"center\">Error</h2>");
-		out.println("	<hr>");
-		out.println("	System Error," + message + "!");
-		out.println("</body>");
-		out.println("</html>");
+		ContactInfo contactinfo = (ContactInfo) req.getAttribute("contactinfo");
 
-		out.close();
-	}
-
-	private void toContactInfoList(HttpServletResponse resp,
-			ContactInfo contactinfo) throws IOException {
-		resp.setCharacterEncoding("UTF-8");
-		PrintWriter out = resp.getWriter();
+		String[] Province = { "河北", "山西", "辽宁", "吉林", "黑龙江", "江苏", "浙江", "安徽",
+				"福建", "江西", "山东", "河南", "湖北", "湖南", "广东", "海南", "四川", "贵州",
+				"云南", "陕西", "甘肃", "青海", "台湾", "内蒙古", "广西壮族", "西藏", "宁夏回族",
+				"新疆维吾尔族", "中国香港", "中国澳门", "其他" };
 		
-		String []Province = {"河北","山西","辽宁" ,"吉林" ,"黑龙江" ,"江苏" ,"浙江" ,"安徽" ,"福建" ,
-				"江西" ,"山东" ,"河南" ,"湖北" ,"湖南" ,"广东" ,"海南" ,"四川" ,
-				"贵州" ,"云南" ,"陕西" ,"甘肃" ,"青海" ,"台湾" ,"内蒙古","广西壮族",
-				"西藏","宁夏回族","新疆维吾尔族","中国香港","中国澳门","其他"};
 		ArrayList ProvinceList = new ArrayList();
-		
-		for(int i =0; i< Province.length; i++){
+
+		for (int i = 0; i < Province.length; i++) {
 			ProvinceList.add(Province[i]);
 		}
-		
-		String []Area = {"中国","中国香港","中国台湾"};
-		
+
+		String[] Area = { "中国", "中国香港", "中国台湾" };
+
 		String userid = contactinfo.getUserid();
 		UserService userservice = new UserServiceImpl();
 		User user = userservice.getUser(userid);
-		
-		
-		/*for (Iterator<ContactInfo> it = contactInfoList.iterator(); it
-				.hasNext();) {
-			ContactInfo info = it.next();
-
-			out.println("			<tr>");
-			out.println("				<td>" + info.getContactid() + "</td>");
-			out.println("				<td>" + info.getUserid() + "</td>");
-			out.println("				<td>" + info.getStreet1() + "</td>");
-			out.println("				<td>" + info.getStreet2() + "</td>");
-			out.println("				<td>" + info.getCity() + "</td>");
-			out.println("				<td>" + info.getProvince() + "</td>");
-			out.println("				<td>" + info.getCountry() + "</td>");
-			out.println("				<td>" + info.getZip() + "</td>");
-			out.println("				<td>" + info.getEmail() + "</td>");
-			out.println("				<td>" + info.getHomephone() + "</td>");
-			out.println("				<td>" + info.getCellphone() + "</td>");
-			out.println("				<td>" + info.getOfficephone() + "</td>");
-
-			out.println("			</tr>");
-		}
-*/
-
 
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<html>");
@@ -126,16 +70,16 @@ public class UserModify extends HttpServlet {
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ProductList\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"UserManage\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"UserManage.PHP\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ShoppingCart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"ShoppingCart.PHP\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"Order\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"Order.PHP\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ProductList\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
 		out.println("					</table>");
 		out.println("				</td>");
@@ -176,13 +120,17 @@ public class UserModify extends HttpServlet {
 		out.println("			<tr>");
 		out.println("				<td width=\"40%\" class=\"tablebody1\"><b>用户名</b>：<br>英文字母或数字，最大长度为8位</td>");
 		out.println("				<td width=\"60%\" class=\"tablebody1\">");
-		out.println("				<input type=\"text\" maxLength=\"12\" size=\"32\"  value=\""+contactinfo.getUserid()+"\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\"/>");
+		out.println("				<input type=\"text\" maxLength=\"12\" size=\"32\"  value=\""
+				+ contactinfo.getUserid()
+				+ "\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\"/>");
 		out.println("				<font color=\"#FF0000\">*</font></td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
 		out.println("				<td width=\"40%\" class=\"tablebody1\"><b>密码</b>：<br>数字，6到8位</td>");
 		out.println("				<td width=\"60%\" class=\"tablebody1\">");
-		out.println("				<input type=\"password\" maxLength=\"12\" size=\"32\" name=\"password\" value=\""+user.getPassword()+"\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\"/>");
+		out.println("				<input type=\"password\" maxLength=\"12\" size=\"32\" name=\"password\" value=\""
+				+ user.getPassword()
+				+ "\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\"/>");
 		out.println("				<font color=\"#FF0000\">*</font></td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
@@ -195,63 +143,77 @@ public class UserModify extends HttpServlet {
 		out.println("				<td width=\"40%\" class=\"tablebody1\"><b>所在地区</b>：</td>");
 		out.println("				<td width=\"60%\" class=\"tablebody1\">");
 		out.println("					<select name=\"country\" onchange=\"javascript:initProvince(this.value)\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\">");
-		
-		
-		for(int i = 0; i< Area.length;i++){
-			out.println("    						<option value=\""+i+1+"\"  selected>"+Area[i]+"</option>");
-			
+
+		for (int i = 0; i < Area.length; i++) {
+			out.println("    						<option value=\"" + i + 1 + "\"  selected>"
+					+ Area[i] + "</option>");
+
 		}
-		
+
 		out.println("					</select>");
 		out.println("					<select name=\"province\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\">");
 		out.println("               		  	");
-		
-		
-		for(int i=0; i< ProvinceList.size();i++){
-			
-			String city = (String)ProvinceList.get(i);
-			
-			out.println("	    					<option value=\""+i+1+"\" >"+city+"</option>");		
+
+		for (int i = 0; i < ProvinceList.size(); i++) {
+
+			String city = (String) ProvinceList.get(i);
+
+			out.println("	    					<option value=\"" + i + 1 + "\" >" + city
+					+ "</option>");
 		}
-		
+
 		out.println("				</select>省");
 		out.println("				<input type=\"text\" size=\"8\" name=\"city\" value=\"\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\"/>市/县</td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
 		out.println("				<td class=\"tablebody1\"><b>联系地址1</b>：</td>");
 		out.println("				<td class=\"tablebody1\">");
-		out.println("				<input type=\"text\" size=\"64\" maxlength=\"32\" name=\"street1\" value=\""+contactinfo.getStreet1()+"\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\"/>");
+		out.println("				<input type=\"text\" size=\"64\" maxlength=\"32\" name=\"street1\" value=\""
+				+ contactinfo.getStreet1()
+				+ "\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\"/>");
 		out.println("			</td>");
 		out.println("			<tr>");
 		out.println("				<td class=\"tablebody1\"><b>联系地址2</b>：</td>");
 		out.println("				<td class=\"tablebody1\">");
-		out.println("				<input type=\"text\" size=\"64\" maxlength=\"32\" name=\"street2\" value=\""+contactinfo.getStreet2()+"\"  style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\"/>");
+		out.println("				<input type=\"text\" size=\"64\" maxlength=\"32\" name=\"street2\" value=\""
+				+ contactinfo.getStreet2()
+				+ "\"  style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\"/>");
 		out.println("			</td>");
 		out.println("			<tr>");
 		out.println("				<td class=\"tablebody1\"><b>邮编</b>：</td>");
 		out.println("				<td class=\"tablebody1\">");
-		out.println("				<input type=\"text\" size=\"32\" maxlength=\"8\" name=\"zip\" value=\""+contactinfo.getZip()+"\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\"/>");
+		out.println("				<input type=\"text\" size=\"32\" maxlength=\"8\" name=\"zip\" value=\""
+				+ contactinfo.getZip()
+				+ "\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\"/>");
 		out.println("			</td>");
 		out.println("			<tr>");
 		out.println("				<td class=\"tablebody1\"><b>家庭电话</b>：</td>");
 		out.println("				<td class=\"tablebody1\">");
-		out.println("				<input type=\"text\" size=\"32\" maxlength=\"16\" name=\"homephone\" value=\""+contactinfo.getHomephone()+"\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\"/>");
+		out.println("				<input type=\"text\" size=\"32\" maxlength=\"16\" name=\"homephone\" value=\""
+				+ contactinfo.getHomephone()
+				+ "\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\"/>");
 		out.println("			</td>");
 		out.println("			<tr>");
 		out.println("				<td class=\"tablebody1\"><b>办公室电话</b>：</td>");
 		out.println("				<td class=\"tablebody1\">");
-		out.println("				<input type=\"text\" size=\"32\" maxlength=\"16\" name=\"officephone\" value=\""+contactinfo.getOfficephone()+"\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\"/>");
+		out.println("				<input type=\"text\" size=\"32\" maxlength=\"16\" name=\"officephone\" value=\""
+				+ contactinfo.getOfficephone()
+				+ "\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\"/>");
 		out.println("			</td>");
 		out.println("			<tr>");
 		out.println("				<td class=\"tablebody1\"><b>手机</b>：</td>");
 		out.println("				<td class=\"tablebody1\">");
-		out.println("				<input type=\"text\" size=\"32\" maxlength=\"16\" name=\"officephone\" value=\""+contactinfo.getCellphone()+"\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\"/>");
+		out.println("				<input type=\"text\" size=\"32\" maxlength=\"16\" name=\"officephone\" value=\""
+				+ contactinfo.getCellphone()
+				+ "\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\"/>");
 		out.println("			</td>");
 		out.println("			<tr>");
 		out.println("");
 		out.println("			<td class=\"tablebody1\"><b>Email地址</b>：<br>	请输入有效的邮件地址</td>");
 		out.println("			<td class=\"tablebody1\">");
-		out.println("			<input maxLength=\"50\" size=\"32\" maxlength=\"32\" name=\"email\" value=\""+contactinfo.getEmail()+"\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\"/></td>");
+		out.println("			<input maxLength=\"50\" size=\"32\" maxlength=\"32\" name=\"email\" value=\""
+				+ contactinfo.getEmail()
+				+ "\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\"/></td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
 		out.println("			<td class=\"tablebody2\" valign=\"middle\" colspan=\"2\" align=\"center\">");
@@ -283,8 +245,9 @@ public class UserModify extends HttpServlet {
 		out.println("		</table>");
 		out.println("	</body>");
 		out.println("</html>");
-		
+
 		out.close();
+
 	}
 
 	@Override

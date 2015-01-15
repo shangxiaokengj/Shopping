@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import rj.pojo.User;
-import rj.service.UserService;
-import rj.service.impl.UserServiceImpl;
 
 public class UserManage extends HttpServlet {
 
@@ -20,39 +18,8 @@ public class UserManage extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		resp.setContentType("text/html;charset=UTF-8;pageEncoding=UTF-8");
-		resp.setCharacterEncoding("UTF-8");
-		try {
-			UserService userService = new UserServiceImpl();
+		List userlist = (List)req.getAttribute("userList");
 
-			List userlist = userService.getUserList();
-
-			toUserList(resp, userlist);
-		} catch (Exception e) {
-			toError(resp, e.getMessage());
-		}
-	}
-
-	private void toError(HttpServletResponse resp, String message)
-			throws IOException {
-		PrintWriter out = resp.getWriter();
-
-		out.println("<html>");
-		out.println("<head>");
-		out.println("	<title>Error</title>");
-		out.println("</head>");
-		out.println("<body>");
-		out.println("	<h2 align=\"center\">Error</h2>");
-		out.println("	<hr>");
-		out.println("	System Error," + message + "!");
-		out.println("</body>");
-		out.println("</html>");
-
-		out.close();
-	}
-
-	private void toUserList(HttpServletResponse resp, List userlist)
-			throws IOException {
 		resp.setCharacterEncoding("UTF-8");
 		PrintWriter out = resp.getWriter();
 
@@ -82,16 +49,16 @@ public class UserManage extends HttpServlet {
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ProductList\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"UserManage\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"UserManage.PHP\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ShoppingCart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"ShoppingCart.PHP\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"Order\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"Order.PHP\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ProductList\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
 		out.println("					</table>");
 		out.println("				</td>");
@@ -156,7 +123,7 @@ public class UserManage extends HttpServlet {
 			out.println("				</td>");
 			out.println("				<td class=tablebody2 valign=\"middle\" align=\"center\" height=\"25\"  width=\"35%\">");
 			out.println("					");
-			out.println("						<input type=\"button\" value=\"修改\" onclick=\"javascript:window.location='UserModify?id="+user.getUserid()+"';\" /> ");
+			out.println("						<input type=\"button\" id = \" "+user.getUserid()+" \" value=\"修改\" onclick=\"javascript:window.location='UserModify.PHP';\" /> ");
 			if(user.getUserid().equals("admin")){
 				out.println("						<input type=\"button\" value=\"删除\" disabled=\"disabled\" />");
 			}else{
@@ -199,8 +166,7 @@ public class UserManage extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+		
 	}
 
 }

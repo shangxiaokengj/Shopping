@@ -10,11 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class UserRegister extends HttpServlet {
 
-	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//super.doGet(req, resp);
 		
 		resp.setCharacterEncoding("UTF-8");
 		PrintWriter out=resp.getWriter();
@@ -48,15 +45,15 @@ public class UserRegister extends HttpServlet {
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("							<td width=\"10%\"><a href=\"ProductList\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("							<td width=\"10%\"><a href=\"UserManage\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\"UserManage.PHP\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("");
-		out.println("							<td width=\"10%\"><a href=\"ShoppingCart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\"ShoppingCart.PHP\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("");
-		out.println("							<td width=\"10%\"><a href=\"Order\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\"Order.PHP\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("");
-		out.println("							<td width=\"10%\"><a href=\"ProductList\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
 		out.println("					</table>");
 		out.println("				</td>");
@@ -85,7 +82,7 @@ public class UserRegister extends HttpServlet {
 		out.println("");
 		out.println("		</table>");
 		out.println("		<br>");
-		out.println("		<form method=\"post\" name=\"reg\" onsubmit=\"return validate(this)\" action=\"product/productList.html\">");
+		out.println("		<form method=\"post\" name=\"reg\" onsubmit=\"return validate(this)\" action=\"ProductList.PHP\">");
 		out.println("			<table class=\"tableborder1\" id=\"table1\" align=\"center\" cellpadding=\"3\" cellspacing=\"1\">");
 		out.println("			<tbody>");
 		out.println("			<tr>");
@@ -238,7 +235,7 @@ public class UserRegister extends HttpServlet {
 		out.println("			");
 		out.println("			<tr>");
 		out.println("				<td class=\"tablebody2\" colspan=\"2\" align=\"center\" valign=\"middle\">");
-		out.println("				<input value=\"注 册\" type=\"submit\" onclick=\"product/productList.html\">&nbsp;&nbsp;");
+		out.println("				<input value=\"注册 \" type=\"submit\">&nbsp;&nbsp;");
 		out.println("				<input value=\"清 除\" type=\"reset\"></td>");
 		out.println("");
 		out.println("			</tr>");
@@ -274,8 +271,6 @@ public class UserRegister extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
 	}
 
 }

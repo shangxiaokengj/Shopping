@@ -13,9 +13,6 @@ public class Login extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//super.doGet(req, resp);
-		
 		resp.setCharacterEncoding("UTF-8");
 		PrintWriter out=resp.getWriter();
 		
@@ -46,15 +43,15 @@ public class Login extends HttpServlet {
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ProductList\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"UserManage\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"UserManage.PHP\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ShoppingCart\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"ShoppingCart.PHP\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"Order\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"Order.PHP\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ProductList\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
 		out.println("					</table>");
 		out.println("				</td>");
@@ -80,7 +77,7 @@ public class Login extends HttpServlet {
 		out.println("			</tr>");
 		out.println("		</table>");
 		out.println("		<br>");
-		out.println("		<form method=\"post\" onsubmit=\"return loginvalidate(this)\" action=\"product/productList.html\">");
+		out.println("		<form method=\"post\" onsubmit=\"return loginvalidate(this)\" action=\"ProductList.PHP\">");
 		out.println("		<table cellpadding=\"3\" cellspacing=\"1\" align=\"center\" class=\"tableborder1\">");
 		out.println("			<tr>");
 		out.println("				<td colspan=\"4\" valign=\"middle\" align=\"center\" height=\"25\" background=\"images/bg2.gif\" width=\"50\">");
@@ -122,7 +119,7 @@ public class Login extends HttpServlet {
 		out.println("				<td colspan=\"4\" class=tablebody2 align=\"center\" valign=\"middle\" width=\"60%\">");
 		out.println("				");
 		out.println("				");
-		out.println("						<input  type=submit value=登陆    onclick=\"javascript:window.location='ProductList';\">");
+		out.println("						<input  type=submit value=登陆    onclick=\"javascript:window.location='ProductList.PHP';\">");
 		out.println("					");
 		out.println("     					");
 		out.println("				 </td>");
