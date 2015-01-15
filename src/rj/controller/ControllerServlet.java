@@ -12,7 +12,6 @@ import rj.pojo.ContactInfo;
 import rj.pojo.Orders;
 import rj.pojo.PayWay;
 import rj.pojo.Product;
-import rj.pojo.User;
 import rj.service.ContactInfoService;
 import rj.service.OrderLineService;
 import rj.service.OrderService;
@@ -27,6 +26,7 @@ import rj.service.impl.PayWayServiceImpl;
 import rj.service.impl.ProductDetailServiceImpl;
 import rj.service.impl.ProductServiceImpl;
 import rj.service.impl.UserServiceImpl;
+import rj.util.ServiceFactory;
 
 public class ControllerServlet extends HttpServlet {
 
@@ -34,11 +34,15 @@ public class ControllerServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String path = req.getServletPath();
-System.out.println(path);
-		path = path.substring(0, path.indexOf("."));
+
+		String suffix = "." + path.split("\\.")[1];
+
+		getServletContext().setAttribute("suffix", suffix);
+
+		path = path.split("\\.")[0];
 
 System.out.println(path);
-
+		
 		if ("/Order".equals(path)) {
 			try {
 				OrderService orderService = new OrderServiceImpl();
@@ -55,15 +59,15 @@ System.out.println(path);
 		} else if (path.contains("OrderDetail")) {
 			try {
 				String name = req.getParameter("id");
-		System.out.println(req.getParameter("id") + "didi");
-		
-				if(name == null){
+				System.out.println(req.getParameter("id") + "didi");
+
+				if (name == null) {
 					req.setAttribute("message", "please choose an order!");
-					getServletContext().getRequestDispatcher("/error").forward(req,
-							resp);
+					getServletContext().getRequestDispatcher("/error").forward(
+							req, resp);
 					return;
 				}
-		
+
 				// get one order
 				OrderService orderService = new OrderServiceImpl();
 				Orders order = orderService.getOrder(Integer.parseInt(name));
@@ -82,7 +86,7 @@ System.out.println(path);
 				}
 
 				UserService userSerivce = new UserServiceImpl();
-				User user = userSerivce.getUser(userid);
+				//User user = userSerivce.getUser(userid);
 
 				ContactInfoService contactinfoservice = new ContactInfoServiceImpl();
 				ContactInfo contactinfo = contactinfoservice
@@ -92,7 +96,7 @@ System.out.println(path);
 				PayWay payway = paywayservice.getPayWay(paywayid);
 
 				req.setAttribute("orderLineList", orderLineList);
-				req.setAttribute("user", user);
+				//req.setAttribute("user", user);
 				req.setAttribute("contactinfo", contactinfo);
 				req.setAttribute("payway", payway);
 				req.setAttribute("order", order);
@@ -105,7 +109,7 @@ System.out.println(path);
 				req.setAttribute("message", e.getMessage());
 				getServletContext().getRequestDispatcher("/error").forward(req,
 						resp);
-				
+
 			}
 		} else if ("/ProductList".equals(path)) {
 			try {
@@ -124,14 +128,14 @@ System.out.println(path);
 
 			try {
 				String id = req.getParameter("id");
-				
-				if(id == null){
+
+				if (id == null) {
 					req.setAttribute("message", "please chose a product!");
-					getServletContext().getRequestDispatcher("/error").forward(req,
-							resp);
+					getServletContext().getRequestDispatcher("/error").forward(
+							req, resp);
 					return;
 				}
-				
+
 				ProductDetailService productdetailService = new ProductDetailServiceImpl();
 				Product product = productdetailService.getProduct(id);
 				req.setAttribute("product", product);
@@ -160,9 +164,12 @@ System.out.println(path);
 		} else if ("/UserManage".equals(path)) {
 
 			try {
-				UserService studentService = new UserServiceImpl();
-				List userList = studentService.getUserList();
+				UserService userService = ServiceFactory.getUserService();
+				
+				List userList = userService.getUserList();
+				
 				req.setAttribute("userList", userList);
+				
 				getServletContext().getRequestDispatcher("/UserManage")
 						.forward(req, resp);
 

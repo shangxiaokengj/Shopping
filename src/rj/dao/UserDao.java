@@ -1,5 +1,13 @@
 package rj.dao;
 
-public class UserDao {
+import java.util.List;
+
+import rj.pojo.User;
+
+public interface UserDao {
+
+	public List getUserList();
+
+	public User getUser(User paramUser);
 
 }
