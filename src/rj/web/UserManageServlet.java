@@ -49,7 +49,7 @@ public class UserManageServlet extends HttpServlet {
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"doProductList.PHP\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
 		out.println("          <td width=\"10%\"><a href=\"UserManage.PHP\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
@@ -123,7 +123,7 @@ public class UserManageServlet extends HttpServlet {
 			out.println("				</td>");
 			out.println("				<td class=tablebody2 valign=\"middle\" align=\"center\" height=\"25\"  width=\"35%\">");
 			out.println("					");
-			out.println("						<input type=\"button\" id = \" "+user.getUserid()+" \" value=\"修改\" onclick=\"javascript:window.location='UserModify.PHP';\" /> ");
+			out.println("						<input type=\"button\" id = \" "+user.getUserid()+" \" value=\"修改\" onclick=\"javascript:window.location='UserModify.PHP?id="+user.getUserid()+"';\" /> ");
 			if(user.getUserid().equals("admin")){
 				out.println("						<input type=\"button\" value=\"删除\" disabled=\"disabled\" />");
 			}else{
@@ -166,7 +166,7 @@ public class UserManageServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
+		this.doGet(req, resp);
 	}
 
 }

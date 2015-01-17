@@ -43,7 +43,7 @@ public class ShoppingCartServlet extends HttpServlet{
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"doProductList.PHP\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
 		out.println("          <td width=\"10%\"><a href=\"UserManage.PHP\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
@@ -206,7 +206,6 @@ public class ShoppingCartServlet extends HttpServlet{
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		//OrderConfirm orderconfirm = new OrderConfirm();
 		doGet(req, resp);
 	}
 

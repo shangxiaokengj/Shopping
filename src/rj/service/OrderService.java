@@ -10,5 +10,5 @@ public interface OrderService {
 
 	public List getOrderList();
 	
-	public Orders getOrder(int orderid);
+	public Orders getOrder(Orders paramOrder);
 }

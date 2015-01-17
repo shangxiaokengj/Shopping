@@ -41,8 +41,14 @@ public class UserModifyServlet extends HttpServlet {
 		String[] Area = { "中国", "中国香港", "中国台湾" };
 
 		String userid = contactinfo.getUserid();
+		
 		UserService userservice = new UserServiceImpl();
-		//User user = userservice.getUser(userid);
+		
+		User paramUser = new User();
+		
+		paramUser.setUserid(userid);
+		
+		User user = userservice.getUser(paramUser);
 
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<html>");
@@ -70,7 +76,7 @@ public class UserModifyServlet extends HttpServlet {
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"doProductList.PHP\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
 		out.println("          <td width=\"10%\"><a href=\"UserManage.PHP\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
@@ -128,10 +134,10 @@ public class UserModifyServlet extends HttpServlet {
 		out.println("			<tr>");
 		out.println("				<td width=\"40%\" class=\"tablebody1\"><b>密码</b>：<br>数字，6到8位</td>");
 		out.println("				<td width=\"60%\" class=\"tablebody1\">");
-		/*out.println("				<input type=\"password\" maxLength=\"12\" size=\"32\" name=\"password\" value=\""
+		out.println("				<input type=\"password\" maxLength=\"12\" size=\"32\" name=\"password\" value=\""
 				+ user.getPassword()
 				+ "\" style=\"font-family: Tahoma,Verdana,宋体; font-size: 12px; line-height: 15px; color: #000000\"/>");
-		*/out.println("				<font color=\"#FF0000\">*</font></td>");
+		out.println("				<font color=\"#FF0000\">*</font></td>");
 		out.println("			</tr>");
 		out.println("			<tr>");
 		out.println("				<td width=\"40%\" class=\"tablebody1\"><b>确认密码</b>：<br>数字，6到8位</td>");
@@ -254,6 +260,8 @@ public class UserModifyServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
+		this.doGet(req, resp);
+		
 	}
 
 }

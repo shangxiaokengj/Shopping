@@ -14,25 +14,26 @@ import rj.service.CategoryService;
 import rj.service.ProductDetailService;
 import rj.service.impl.CategoryServerImpl;
 import rj.service.impl.ProductDetailServiceImpl;
+import rj.util.ServiceFactory;
 
 public class ProductDetailServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		
-		req.getParameter(null);
+		this.doGet(req, resp);
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		//得到？之后的值
-System.out.println(req.getQueryString());
+		// 得到？之后的值
+		System.out.println(req.getQueryString());
 
 		Product product = (Product) req.getAttribute("product");// 所选书的书号
-		CategoryService categoryservice = new CategoryServerImpl();
-		Category category = categoryservice
-				.getCategory(product.getCategoryid());// 所选书的类别名称
+		CategoryService categoryservice = ServiceFactory.getcategoryService();
+		Category paramCategory = new Category();
+		paramCategory.setCategoryid(product.getCategoryid());
+		Category category = categoryservice.getCategory(paramCategory);// 所选书的类别名称
 
 		resp.setCharacterEncoding("UTF-8");
 		PrintWriter out = resp.getWriter();
@@ -61,7 +62,7 @@ System.out.println(req.getQueryString());
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"doProductList.PHP\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
 		out.println("          <td width=\"10%\"><a href=\"UserManage.PHP\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");

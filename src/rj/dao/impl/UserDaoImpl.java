@@ -57,7 +57,6 @@ public class UserDaoImpl implements UserDao {
 		return userlist;
 	}
 
-	@Override
 	public User getUser(User paramUser) {
 
 		User user = new User();
@@ -68,15 +67,19 @@ public class UserDaoImpl implements UserDao {
 		try {
 			conn = ConnectionFactory.getConnection();
 			stmt = conn.createStatement();
+			System.out.println(paramUser.getUserid());
 
 			String sql = "select * from users where userid ='"
-					+ paramUser.getUserid() + "'";
+					+ paramUser.getUserid() + "' and password = '"
+					+ paramUser.getPassword() + "' ";
+			
 
 			rs = stmt.executeQuery(sql);
 
 			if (rs.next()) {
 				user.setUserid(rs.getString("userid"));
 				user.setPassword(rs.getString("password"));
+				return user;
 			} else {
 				System.out.println("Has no users");
 			}
@@ -94,7 +97,46 @@ public class UserDaoImpl implements UserDao {
 			}
 		}
 
-		return user;
+		return null;
+	}
+
+	public User getUserByUserid(String userid) {
+
+		User user = new User();
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = ConnectionFactory.getConnection();
+			stmt = conn.createStatement();
+System.out.println(userid + " userDao");
+			String sql = "select * from users where userid ='" + userid + "'";
+
+			rs = stmt.executeQuery(sql);
+
+			if (rs.next()) {
+				user.setUserid(rs.getString("userid"));
+				user.setPassword(rs.getString("password"));
+				return user;
+			} else {
+				System.out.println("Has no users");
+			}
+
+		} catch (Exception e) {
+			throw new RuntimeException("error when querying users ", e);
+		} finally {
+			try {
+				rs.close();
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new RuntimeException("error when querying users ", e);
+			}
+		}
+
+		return null;
 	}
 
 }

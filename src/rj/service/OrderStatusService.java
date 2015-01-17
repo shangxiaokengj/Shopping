@@ -5,6 +5,6 @@ import rj.pojo.OrderStatus;
 
 public interface OrderStatusService {
 
-	public OrderStatus  getOrderStatus(int statusid);
+	public OrderStatus  getOrderStatusByOrderid(OrderStatus paramOrderStatus);
 	
 }

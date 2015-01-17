@@ -24,6 +24,11 @@ public class UserServiceImpl implements UserService {
 	public User getUser(User paramUser) {
 		return DaoFactory.getUserDao().getUser(paramUser);
 	}
+
+	@Override
+	public User getUserByUserid(String userid) {
+		return DaoFactory.getUserDao().getUserByUserid(userid);
+	}
 	
 
 }

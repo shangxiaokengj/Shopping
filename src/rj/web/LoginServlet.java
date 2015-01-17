@@ -8,15 +8,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import rj.pojo.User;
+
 public class LoginServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		String userName = "";
+
+		User paramUser = (User) req.getSession().getAttribute("paramUser");
+
+		if (paramUser != null) {
+			userName = paramUser.getUserid();
+		}
+
 		resp.setCharacterEncoding("UTF-8");
-		PrintWriter out=resp.getWriter();
-		
-		
+		PrintWriter out = resp.getWriter();
+
 		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
 		out.println("<html>");
 		out.println("	<head>");
@@ -43,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 		out.println("						<tr>");
 		out.println("							<td width=\"5%\"></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"doProductList.PHP\"><img name=\"Image1\" border=\"0\" src=\"images/index.gif\" width=\"90\" height=\"36\"></a></td>");
 		out.println("							");
 		out.println("          <td width=\"10%\"><a href=\"UserManage.PHP\"><img name=\"Image2\" border=\"0\" src=\"images/reg.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
@@ -77,7 +86,12 @@ public class LoginServlet extends HttpServlet {
 		out.println("			</tr>");
 		out.println("		</table>");
 		out.println("		<br>");
-		out.println("		<form method=\"post\" onsubmit=\"return loginvalidate(this)\" action=\"ProductList.PHP\">");
+
+		if (req.getSession().getAttribute("message") != null) {
+			out.println("	" + req.getSession().getAttribute("message") + "");
+		}
+
+		out.println("		<form method=\"post\" onsubmit=\"return loginvalidate(this)\" action=\"doLogin.PHP\">");
 		out.println("		<table cellpadding=\"3\" cellspacing=\"1\" align=\"center\" class=\"tableborder1\">");
 		out.println("			<tr>");
 		out.println("				<td colspan=\"4\" valign=\"middle\" align=\"center\" height=\"25\" background=\"images/bg2.gif\" width=\"50\">");
@@ -91,9 +105,10 @@ public class LoginServlet extends HttpServlet {
 		out.println("				<td class=tablebody1 valign=\"middle\" height=\"20\" width=\"30%\">");
 		out.println("     					 请输入您的用户名:");
 		out.println("				 </td>");
-		out.println("				<td class=tablebody1 valign=\"middle\" height=\"20\" width=\"80%\">");
+		out.println("				<td class=tablebody1    valign=\"middle\" height=\"20\" width=\"80%\">");
 		out.println("					");
-		out.println("						<input type=\"text\">&nbsp;<a href=\"UserRegister.PHP\">注册新用户</a>");
+		out.println("						<input type=\"text\"  name=\"userName\" value = \""
+				+ userName + "\">&nbsp;<a href=\"toRegister.PHP\">注册新用户</a>");
 		out.println("				");
 		out.println("				");
 		out.println("				");
@@ -104,9 +119,9 @@ public class LoginServlet extends HttpServlet {
 		out.println("				<td class=tablebody1 valign=\"middle\" width=\"30%\" height=\"25\">");
 		out.println("     					 请输入您的密码:");
 		out.println("				 </td>");
-		out.println("				<td class=tablebody1 valign=\"middle\" width=\"80%\">");
+		out.println("				<td class=tablebody1   valign=\"middle\" width=\"80%\">");
 		out.println("		");
-		out.println("						<input type=password>");
+		out.println("						<input type=password   name=\"password\"> ");
 		out.println("					");
 		out.println("				");
 		out.println("				");
@@ -152,16 +167,14 @@ public class LoginServlet extends HttpServlet {
 		out.println("<!-- Footer End -->");
 		out.println("	</body>");
 		out.println("</html>");
-		
-		
+
 		out.close();
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+		this.doGet(req, resp);
 	}
 
 }

@@ -10,4 +10,5 @@ public interface UserDao {
 
 	public User getUser(User paramUser);
 
+	public User getUserByUserid(String userid);
 }
