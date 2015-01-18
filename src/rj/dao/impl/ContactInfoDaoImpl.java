@@ -56,9 +56,17 @@ public class ContactInfoDaoImpl implements ContactInfoDao {
 			throw new RuntimeException("error when querying contactinfo ", e);
 		} finally {
 			try {
-				rs.close();
-				stmt.close();
-				conn.close();
+				if(rs != null){
+					rs.close();	
+				}
+				if(stmt!= null){
+					
+					stmt.close();
+				}
+				if(conn != null){
+					
+					conn.close();
+				}
 			} catch (Exception e) {
 				throw new RuntimeException("error when querying contactinfo ",
 						e);

@@ -12,6 +12,12 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+
+	<listener>
+		<listener-class>rj.web.listener.ContextListener</listener-class>
+	</listener>
+
+
 	<filter>
 		<filter-name>LoginFilter</filter-name>
 		<filter-class>rj.web.filter.LoginFilter</filter-class>
@@ -19,6 +25,16 @@
 	<filter-mapping>
 		<filter-name>LoginFilter</filter-name>
 		<url-pattern>/ProductList.PHP</url-pattern>
+	</filter-mapping>
+
+
+	<filter>
+		<filter-name>ControllerFilter</filter-name>
+		<filter-class>rj.control.ControllerFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>ControllerFilter</filter-name>
+		<url-pattern>*.PHP</url-pattern>
 	</filter-mapping>
 
 	<servlet>
@@ -40,6 +56,17 @@
 		<servlet-name>OrderDetailServlet</servlet-name>
 		<url-pattern>/OrderDetail</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>VelocityServlet</servlet-name>
+		<servlet-class>rj.velocity.VelocityServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>VelocityServlet</servlet-name>
+		<url-pattern>*.vm</url-pattern>
+	</servlet-mapping>
+
 
 	<servlet>
 		<servlet-name>ProductDetailServlet</servlet-name>
@@ -124,10 +151,8 @@
 		<servlet-name>ControllerServlet</servlet-name>
 		<servlet-class>rj.controller.ControllerServlet</servlet-class>
 	</servlet>
-	<servlet-mapping>
-		<servlet-name>ControllerServlet</servlet-name>
-		<url-pattern>*.PHP</url-pattern>
-	</servlet-mapping>
+	<!-- <servlet-mapping> <servlet-name>ControllerServlet</servlet-name> <url-pattern>*.PHP</url-pattern> 
+		</servlet-mapping> -->
 
 	<servlet>
 		<servlet-name>ErrorServlet</servlet-name>

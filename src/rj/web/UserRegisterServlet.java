@@ -84,7 +84,7 @@ public class UserRegisterServlet extends HttpServlet {
 		out.println("");
 		out.println("							<td width=\"10%\"><a href=\"Order.PHP\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("");
-		out.println("							<td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("							<td width=\"10%\"><a href=\"doProductList.PHP\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
 		out.println("					</table>");
 		out.println("				</td>");
@@ -107,7 +107,7 @@ public class UserRegisterServlet extends HttpServlet {
 		out.println("			<tr>");
 		out.println("				<td height=\"25\" valign=\"middle\">");
 		out.println("					<img src=\"images/Forum_nav.gif\" align=\"absmiddle\">");
-		out.println("					<a href=\"ProductList.PHP\">达内电子商务门户</a> → 用户注册");
+		out.println("					<a href=\"doProductList.PHP\">达内电子商务门户</a> → 用户注册");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("");

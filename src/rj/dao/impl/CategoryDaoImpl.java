@@ -44,9 +44,17 @@ public class CategoryDaoImpl implements CategoryDao {
 			throw new RuntimeException("error when querying Category ", e);
 		} finally {
 			try {
-				rs.close();
-				stmt.close();
-				conn.close();
+				if(rs != null){
+					rs.close();	
+				}
+				if(stmt!= null){
+					
+					stmt.close();
+				}
+				if(conn != null){
+					
+					conn.close();
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new RuntimeException("error when querying Category ", e);

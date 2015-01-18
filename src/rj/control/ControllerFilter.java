@@ -50,7 +50,13 @@ public class ControllerFilter implements Filter {
 
 		path = path.split("\\.")[0];
 
-		if ("/Order".equals(path)) {
+		if ("/toOrder".equals(path)) {
+			
+			getServletContext().getRequestDispatcher("/Order").forward(
+					req, resp);
+			req.getSession().removeAttribute("message");
+
+		} else if ("/doOrder".equals(path)) {
 			try {
 				OrderService orderService = ServiceFactory.getOrderService();
 
@@ -185,7 +191,7 @@ public class ControllerFilter implements Filter {
 
 		} else if ("/toLogin".equals(path)) {
 
-			getServletContext().getRequestDispatcher("/Login").forward(req,
+			getServletContext().getRequestDispatcher("/Login.vm").forward(req,
 					resp);
 			req.getSession().removeAttribute("message");
 
@@ -210,7 +216,7 @@ public class ControllerFilter implements Filter {
 				req.getSession().setAttribute("IS_LOGIN", "1");
 				req.setAttribute("user", user);
 
-				getServletContext().getRequestDispatcher("/ProductList.PHP")
+				getServletContext().getRequestDispatcher("/ProductList.vm")
 						.forward(req, resp);
 			} else {
 				req.getSession().setAttribute("message",
@@ -263,7 +269,7 @@ public class ControllerFilter implements Filter {
 			}
 
 		} else if ("/toRegister".equals(path)) {
-			getServletContext().getRequestDispatcher("/UserRegister").forward(
+			getServletContext().getRequestDispatcher("/UserRegister.vm").forward(
 					req, resp);
 		} else if ("/doRegister".equals(path)) {
 
@@ -327,7 +333,7 @@ public class ControllerFilter implements Filter {
 				req.setAttribute("user", user);
 				req.setAttribute("contactinfo", contactinfo);
 
-				getServletContext().getRequestDispatcher("/Login.PHP").forward(
+				getServletContext().getRequestDispatcher("/Login.vm").forward(
 						req, resp);
 			}
 

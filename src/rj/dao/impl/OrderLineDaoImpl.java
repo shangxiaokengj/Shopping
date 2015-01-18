@@ -42,9 +42,17 @@ public class OrderLineDaoImpl implements OrderLineDao {
 			throw new RuntimeException("error when querying orders ", e);
 		} finally {
 			try {
-				rs.close();
-				stmt.close();
-				conn.close();
+				if(rs != null){
+					rs.close();	
+				}
+				if(stmt!= null){
+					
+					stmt.close();
+				}
+				if(conn != null){
+					
+					conn.close();
+				}
 			} catch (Exception e) {
 				throw new RuntimeException("error when querying orders ", e);
 			}

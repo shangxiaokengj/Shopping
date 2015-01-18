@@ -47,9 +47,17 @@ public class ProductDaoImpl implements ProductDao {
 			throw new RuntimeException("error when querying Product ", e);
 		} finally {
 			try {
-				rs.close();
-				stmt.close();
-				conn.close();
+				if(rs != null){
+					rs.close();	
+				}
+				if(stmt!= null){
+					
+					stmt.close();
+				}
+				if(conn != null){
+					
+					conn.close();
+				}
 			} catch (Exception e) {
 				throw new RuntimeException("error when querying", e);
 			}
@@ -96,9 +104,17 @@ public class ProductDaoImpl implements ProductDao {
 			throw new RuntimeException("error when querying ProductDetail ", e);
 		} finally {
 			try {
-				rs.close();
-				stmt.close();
-				conn.close();
+				if(rs != null){
+					rs.close();	
+				}
+				if(stmt!= null){
+					
+					stmt.close();
+				}
+				if(conn != null){
+					
+					conn.close();
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new RuntimeException(

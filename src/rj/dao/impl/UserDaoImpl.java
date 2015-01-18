@@ -44,9 +44,17 @@ public class UserDaoImpl implements UserDao {
 
 			try {
 
-				rs.close();
-				stmt.close();
-				conn.close();
+				if(rs != null){
+					rs.close();	
+				}
+				if(stmt!= null){
+					
+					stmt.close();
+				}
+				if(conn != null){
+					
+					conn.close();
+				}
 
 			} catch (Exception e) {
 
@@ -88,9 +96,17 @@ public class UserDaoImpl implements UserDao {
 			throw new RuntimeException("error when querying users ", e);
 		} finally {
 			try {
-				rs.close();
-				stmt.close();
-				conn.close();
+				if(rs != null){
+					rs.close();	
+				}
+				if(stmt!= null){
+					
+					stmt.close();
+				}
+				if(conn != null){
+					
+					conn.close();
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new RuntimeException("error when querying users ", e);
@@ -127,9 +143,17 @@ System.out.println(userid + " userDao");
 			throw new RuntimeException("error when querying users ", e);
 		} finally {
 			try {
-				rs.close();
-				stmt.close();
-				conn.close();
+				if(rs != null){
+					rs.close();	
+				}
+				if(stmt!= null){
+					
+					stmt.close();
+				}
+				if(conn != null){
+					
+					conn.close();
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 				throw new RuntimeException("error when querying users ", e);

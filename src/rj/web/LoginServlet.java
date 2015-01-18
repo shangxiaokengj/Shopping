@@ -58,9 +58,9 @@ public class LoginServlet extends HttpServlet {
 		out.println("							");
 		out.println("          <td width=\"10%\"><a href=\"ShoppingCart.PHP\"><img name=\"Image4\" border=\"0\" src=\"images/cart.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"Order.PHP\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"doOrder.PHP\"><img name=\"Image5\" border=\"0\" src=\"images/order.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("							");
-		out.println("          <td width=\"10%\"><a href=\"ProductList.PHP\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
+		out.println("          <td width=\"10%\"><a href=\"doProductList.PHP\"><img name=\"Image6\" border=\"0\" src=\"images/exit.gif\" width=\"92\" height=\"36\"></a></td>");
 		out.println("						</tr>");
 		out.println("					</table>");
 		out.println("				</td>");
@@ -81,7 +81,7 @@ public class LoginServlet extends HttpServlet {
 		out.println("			<tr>");
 		out.println("				<td height=\"25\" valign=\"middle\">");
 		out.println("					<img src=\"images/Forum_nav.gif\" align=\"absmiddle\">");
-		out.println("					<a href=\"ProductList.PHP\">达内电子商务门户</a> 用户登陆");
+		out.println("					<a href=\"doProductList.PHP\">达内电子商务门户</a> 用户登陆");
 		out.println("				</td>");
 		out.println("			</tr>");
 		out.println("		</table>");
@@ -134,7 +134,7 @@ public class LoginServlet extends HttpServlet {
 		out.println("				<td colspan=\"4\" class=tablebody2 align=\"center\" valign=\"middle\" width=\"60%\">");
 		out.println("				");
 		out.println("				");
-		out.println("						<input  type=submit value=登陆    onclick=\"javascript:window.location='ProductList.PHP';\">");
+		out.println("						<input  type=submit value=登陆    onclick=\"javascript:window.location='doProductList.PHP';\">");
 		out.println("					");
 		out.println("     					");
 		out.println("				 </td>");
